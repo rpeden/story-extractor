@@ -1,12 +1,11 @@
-const jsdom = require("jsdom");
 const request = require("request");
-const jQuery = require("jquery");
 const _ = require("lodash");
 const parsers = require("./parser-definitions.js");
+const cheerio = require("cheerio");
 
 const hackerNewsParser = (dom, promise, minPoints, logo) => {
   if (dom.err) { promise.reject({ site: "Hacker News", stories: []}); }
-  const $ = jQuery(dom.window);
+  const $ = dom.document;//jQuery(dom.window);
     // get the list of stories
   const stories = $(".athing");
   const parsedStories = [];
@@ -30,17 +29,18 @@ const hackerNewsParser = (dom, promise, minPoints, logo) => {
 const makeHNParser = (minimumPoints, logo) => {
   return new Promise((resolve, reject) => {
     request("https://news.ycombinator.com", (error, response, body) => {
-      jsdom.env(body, [], (err, window) => {
-        hackerNewsParser({err, window}, {resolve, reject}, minimumPoints, logo);
-      });
+      //jsdom.env(body, [], (err, window) => {
+      const doc = cheerio.load(body);
+      hackerNewsParser({err: error, document: doc}, {resolve, reject}, minimumPoints, logo);
+      //});
     });
   });
 };
 
 const redditParser = (dom, promise, title, minPoints, logo) => {
   if (dom.err) { promise.reject([]); }
-  const $ = jQuery(dom.window);
-    // extract the stories
+  const $ = dom.document;//jQuery(dom.window);
+  // extract the stories
   const stories = $(".link");
   const parsedStories = [];
     // extract what we need from each story
@@ -63,11 +63,10 @@ const redditParser = (dom, promise, title, minPoints, logo) => {
 const makeRedditParser = (subReddit, title, minimumPoints, logo) => {
   return new Promise((resolve, reject) => {
     request(`https://www.reddit.com/r/${subReddit}`, (error, response, body) => {
-      jsdom.env(body, [], (err, window) => {
-        redditParser({ err, window},
-                     { resolve, reject },
-                     title, minimumPoints, logo);
-      });
+      const doc = cheerio.load(body);
+      redditParser({ err: error, document: doc},
+                   { resolve, reject },
+                   title, minimumPoints, logo);
     });
   });
 };
@@ -87,15 +86,6 @@ const createParser = (parserInfo) => {
 const getStories = () => {
   return Promise.all(parsers.map(createParser));
 };
-
-/*
-getStories().then((results) => {
-  results.forEach((result) => {
-    // eslint-disable-next-line no-console,prefer-template
-    console.log("\nSite: " + result.site +
-                "\nStories: " + result.stories.length);
-  });
-});*/
 
 module.exports = {
   getStories
