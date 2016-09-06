@@ -7,7 +7,7 @@ module.exports = [
   { type: "Reddit",
     title: "Reddit /r/programming",
     subReddit: "programming",
-    minimumScore: 100,
+    minimumScore: 50,
     logo: "reddit.png" },
   { type: "Reddit",
     title: "Reddit /r/dotnet",

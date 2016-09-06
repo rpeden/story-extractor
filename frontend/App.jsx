@@ -23,7 +23,7 @@ class StoryApp extends Component {
     this.socket = io(window.location.href);
     this.socket.on("stories", (data) => {
       // eslint-disable-next-line no-console,prefer-template
-      console.log(JSON.stringify(data));
+      //console.log(JSON.stringify(data));
       this.setState({
         stories: data,
         lastUpdated: moment().format("h:mm a"),
