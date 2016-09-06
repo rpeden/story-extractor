@@ -1,0 +1,25 @@
+{
+    "extends": "walmart/configurations/es6-react",
+    "env": {
+        "node": true,
+        "browser": true
+    },
+    "rules": {
+      "filenames/match-regex": 0,
+      "filenames/match-exported": 0,
+      "filenames/no-index": 0,
+      "no-magic-numbers": 0,
+      // max 5 function parameters 
+      "max-params": ["error", 5],
+      "new-cap": 0
+    },
+    "plugins": ["react"],
+    "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        }
+  },
+  "globals": {
+      "google": false
+  }
+}

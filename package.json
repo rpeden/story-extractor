@@ -1,0 +1,42 @@
+{
+  "name": "tech-news-aggregator",
+  "version": "0.0.1",
+  "description": "Scrapes tech news from several sites and displays it in a friendly manner.",
+  "main": "main.js",
+  "dependencies": {
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-1": "^6.13.0",
+    "eslint": "^3.4.0",
+    "eslint-config-walmart": "^1.0.1",
+    "eslint-plugin-filenames": "^1.1.0",
+    "eslint-plugin-react": "^6.2.0",
+    "express": "^4.14.0",
+    "jquery": "^3.1.0",
+    "jsdom": "^9.4.5",
+    "lodash": "^4.15.0",
+    "material-ui": "^0.15.4",
+    "moment": "^2.14.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "react-tap-event-plugin": "^1.0.0",
+    "redux": "^3.5.2",
+    "request": "^2.74.0",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Peden",
+  "license": "MIT"
+}

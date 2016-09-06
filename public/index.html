@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <style type="text/css">
+      html, body {
+        margin: 0px;
+        padding: 0px;
+        background-color: #eee;
+      }
+      a {
+        color: #337ab7;
+        text-decoration: none;
+      }
+      a:visited {
+        color: #999;
+        text-decoration: none;
+      }
+      a:hover,
+      a:focus {
+        color: #23527c;
+        text-decoration: underline;
+      }
+      a:focus {
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+      }
+      .story-group-title {
+        font-size: 30px;
+      }
+      .story-logo {
+        height: 40px;
+        margin-right: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      /*var socket = io.connect('http://localhost:4000');
+      socket.on('stories', function (data) {
+        console.log(JSON.stringify(data));
+      });*/
+    </script>
+    <div id="story-app"></div>
+    <script src="js/app.bundle.js"></script>
+  </body>
+</html>
