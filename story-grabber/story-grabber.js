@@ -14,7 +14,10 @@ const hackerNewsParser = (dom, promise, minPoints, logo) => {
     // extract div containing story
     const storyAnchor = $(story).find(".title a").first();
     // extract url
-    const address = storyAnchor.attr("href");
+    let address = storyAnchor.attr("href");
+    if (!address.startsWith("http")) {
+      address = `https://news.ycombinator.com/${address}`;
+    }
     // extract story title
     const title = storyAnchor.text();
     // extract score/points
