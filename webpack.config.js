@@ -19,8 +19,8 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.DefinePlugin({
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    /*new webpack.DefinePlugin({
       "process.env": {
         "NODE_ENV": JSON.stringify("production")
       }
@@ -32,6 +32,6 @@ module.exports = {
       output: {
         comments: false
       }
-    })
+    })*/
   ]
 };

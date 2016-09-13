@@ -1,7 +1,7 @@
-const request = require("request");
 const _ = require("lodash");
 const parsers = require("./parser-definitions.js");
-const cheerio = require("cheerio");
+const cheerio = require("./cheerio-bundle.js");
+require("isomorphic-fetch");
 
 const hackerNewsParser = (dom, promise, minPoints, logo) => {
   if (dom.err) { promise.reject({ site: "Hacker News", stories: []}); }
@@ -11,10 +11,15 @@ const hackerNewsParser = (dom, promise, minPoints, logo) => {
   const parsedStories = [];
     // extract what we need from each story
   _.forEach(stories, (story) => {
+    // extract div containing story
     const storyAnchor = $(story).find(".title a").first();
-    const points = parseInt($(story).next().find(".score").text()) || 0;
+    // extract url
     const address = storyAnchor.attr("href");
+    // extract story title
     const title = storyAnchor.text();
+    // extract score/points
+    const points = parseInt($(story).next().find(".score").text()) || 0;
+
     if (points >= minPoints) {
       parsedStories.push({
         title,
@@ -28,12 +33,15 @@ const hackerNewsParser = (dom, promise, minPoints, logo) => {
 
 const makeHNParser = (minimumPoints, logo) => {
   return new Promise((resolve, reject) => {
-    request("https://news.ycombinator.com", (error, response, body) => {
-      //jsdom.env(body, [], (err, window) => {
-      const doc = cheerio.load(body);
-      hackerNewsParser({err: error, document: doc}, {resolve, reject}, minimumPoints, logo);
-      //});
-    });
+    fetch("https://news.ycombinator.com")
+      .then((response) => {
+        return response.text();
+      })
+      .then((body) => {
+        const doc = cheerio.load(body);
+        hackerNewsParser({err: null, document: doc}, {resolve, reject}, minimumPoints, logo);
+      })
+      .catch((error) => reject(error));
   });
 };
 
@@ -43,11 +51,18 @@ const redditParser = (dom, promise, title, minPoints, logo) => {
   // extract the stories
   const stories = $(".link");
   const parsedStories = [];
+
     // extract what we need from each story
   _.each(stories, (story) => {
+    //extract title
     const titleAnchor = $(story).find(".title").find(".title");
     const titleText = titleAnchor.text();
-    const address = titleAnchor.attr("href") || "";
+    // extract URL
+    let address = titleAnchor.attr("href") || "";
+    if (!address.startsWith("http")) {
+      address = `https://www.reddit.com ${address}`;
+    }
+    // extract score/points
     const points = parseInt($(story).find(".likes").text()) || 0;
     if (points >= minPoints) {
       parsedStories.push({
@@ -62,12 +77,15 @@ const redditParser = (dom, promise, title, minPoints, logo) => {
 
 const makeRedditParser = (subReddit, title, minimumPoints, logo) => {
   return new Promise((resolve, reject) => {
-    request(`https://www.reddit.com/r/${subReddit}`, (error, response, body) => {
-      const doc = cheerio.load(body);
-      redditParser({ err: error, document: doc},
-                   { resolve, reject },
-                   title, minimumPoints, logo);
-    });
+    fetch(`https://www.reddit.com/r/${subReddit}`)
+      .then((response) => response.text())
+      .then((body) => {
+        const doc = cheerio.load(body);
+        redditParser({ err: null, document: doc},
+                     { resolve, reject },
+                     title, minimumPoints, logo);
+      })
+      .catch((error) => reject(error));
   });
 };
 
