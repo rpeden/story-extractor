@@ -14,6 +14,7 @@ import moment from "moment";
 
 import theme from "./utils/theme";
 import styles from "./utils/styles";
+import { extractDomain } from "./utils/string-utils";
 
 class StoryApp extends Component {
 
@@ -53,6 +54,7 @@ class StoryApp extends Component {
             onClick={(event) => this.openStoryLink(event, story.address)}
           >{story.title}
           </a>
+          <span style={styles.story.domain}> ({extractDomain(story.address)})</span>
         </div>
       </div>
     );

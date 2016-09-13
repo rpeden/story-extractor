@@ -38,6 +38,10 @@ const styles = {
     title: {
       display: "inline-block",
       maxWidth: "800px"
+    },
+    domain: {
+      fontSize: "13px",
+      color: "#888"
     }
   }
 };
