@@ -63,7 +63,7 @@ const redditParser = (dom, promise, title, minPoints, logo) => {
     // extract URL
     let address = titleAnchor.attr("href") || "";
     if (!address.startsWith("http")) {
-      address = `https://www.reddit.com ${address}`;
+      address = `https://www.reddit.com${address}`;
     }
     // extract score/points
     const points = parseInt($(story).find(".likes").text()) || 0;
