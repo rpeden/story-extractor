@@ -1,0 +1,1 @@
+@node_modules\.bin\forever.cmd start --minUptime 1000 --spinSleepTime 1000 server.js %1

@@ -43,7 +43,13 @@ io.on("updateStories", () => {
   sendStories();
 });
 
-server.listen(4000);
+let port = 4000;
+if (process.argv.length > 2) {
+  port = parseInt(process.argv[2]) || port;
+}
+server.listen(port);
+// eslint-disable-next-line
+console.log(`Running on port ${port}`);
 sendStories();
 //update stories every 15 minutes
 setInterval(sendStories, 900000);
