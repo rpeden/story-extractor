@@ -16,14 +16,9 @@ export default class TitleBar extends React.Component {
                     Last Updated: {this.props.lastUpdated}
                     </span>
                 </div>
-                <FlatButton
-                    className="title-bar-update-button"
-                    label={buttonLabel}
-                    onClick={this.props.onUpdateClick}
-                />
             </div>
         );
-        }
+    }
 
         return <span />;
     }
@@ -33,7 +28,7 @@ export default class TitleBar extends React.Component {
             <AppBar
                 iconElementLeft={<span />}
                 iconElementRight={this.lastUpdated()}
-                title="Story Grabber 9000"
+                title={<div style={{fontFamily:'Orbitron'}}>StoryGrabber</div>}
                 className="title-bar"
             />
         );

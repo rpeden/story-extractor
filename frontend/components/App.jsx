@@ -14,6 +14,9 @@ import appStore from "../store/app-store";
 import socket from "../socket/socket-connection";
 import { Provider, observer } from "mobx-react";
 
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Reload from 'material-ui/svg-icons/action/cached';
+
 @observer
 class StoryApp extends Component {
 
@@ -48,6 +51,9 @@ class StoryApp extends Component {
           <div className="list-container">
             {this.renderStories()}
           </div>
+          <FloatingActionButton onClick={this.updateStories} style={{ position: "fixed", bottom: 15, right: 15 }}>
+            <Reload />
+          </FloatingActionButton>
         </div>
       </MuiThemeProvider>
     );
