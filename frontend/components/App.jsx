@@ -4,9 +4,8 @@ import React from "react";
 import { Component } from "react";
 import ReactDOM from "react-dom";
 
-import AppBar from "material-ui/AppBar";
+import TitleBar from "./TitleBar/TitleBar.jsx";
 import Paper from "material-ui/Paper";
-import FlatButton from "material-ui/FlatButton";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import _ from "lodash";
 
@@ -77,41 +76,11 @@ class StoryApp extends Component {
     }
   }
 
-  lastUpdated() {
-    if (appStore.lastUpdated) {
-      const buttonLabel = appStore.currentlyUpdating ? "Updating..." : "Update Now";
-
-      return (
-        <div style={{ marginTop: "5px" }}>
-          <div style={{ color: "white", marginRight: "15px", display: "inline-block" }}>
-            <span>
-              Last Updated: {appStore.lastUpdated}
-            </span>
-          </div>
-          <FlatButton
-            style={{ color: "white", marginRight: "10px", width: "150px" }}
-            label={buttonLabel}
-            onClick={() => {
-              socket.emit("update-stories");
-              appStore.currentlyUpdating = true;
-            }}
-          />
-        </div>
-      );
-    }
-    return <span />;
-  }
-
   render() {
     return (
       <MuiThemeProvider muiTheme={theme}>
         <div style={styles.container}>
-          <AppBar
-            iconElementLeft={<span />}
-            iconElementRight={this.lastUpdated()}
-            title="Story Grabber 9000"
-            style={{ position: "fixed", top: "0px", left: "0px" }}
-          />
+          <TitleBar />
           <div style={styles.listContainer}>
             {this.renderStories()}
           </div>
