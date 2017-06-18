@@ -11,11 +11,12 @@ import _ from "lodash";
 
 import theme from "../utils/theme";
 import styles from "../utils/styles";
-import { extractDomain } from "../utils/string-utils";
 
 import appStore from "../store/app-store";
 import socket from "../socket/socket-connection";
 import { Provider, observer } from "mobx-react";
+
+import Story from "./Story/Story.jsx";
 
 @observer
 class StoryApp extends Component {
@@ -29,22 +30,7 @@ class StoryApp extends Component {
     window.open(link);
   }
 
-  renderStory(story) {
-    return (
-      <div key={story.address} style={{ marginBottom: "10px" }}>
-        <div style={styles.story.points}>
-          {story.points}
-        </div>
-        <div style={styles.story.title}>
-          <a href={story.address}
-            onClick={(event) => this.openStoryLink(event, story.address)}
-          >{story.title}
-          </a>
-          <span style={styles.story.domain}> ({extractDomain(story.address)})</span>
-        </div>
-      </div>
-    );
-  }
+  
 
   renderStoryGroup(storyGroup) {
     const sortedStories = _.orderBy(storyGroup.stories, ["points"], ["desc"]);
@@ -58,7 +44,7 @@ class StoryApp extends Component {
             <div style={styles.story.header.points}>Points</div>
             <div style={styles.story.header.title}>Title</div>
             <div style={{ marginTop: "10px" }}>
-              {sortedStories.map(this.renderStory.bind(this))}
+              {sortedStories.map((story) => <Story story={story} /> )}
             </div>
           </div>
         </Paper>
