@@ -5,8 +5,6 @@ import _ from "lodash";
 import Story from "../Story/Story.jsx";
 import styles from "../../utils/styles";
 
-
-
 const StoryGroup = ({storyGroup}) => {
     const sortedStories = _.orderBy(storyGroup.stories, ["points"], ["desc"]);
     return (

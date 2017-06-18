@@ -38,11 +38,19 @@ class StoryApp extends Component {
     }
   }
 
+  updateStories() {
+    socket.emit("update-stories");
+    appStore.currentlyUpdating = true;
+  }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={theme}>
         <div style={styles.container}>
-          <TitleBar />
+          <TitleBar 
+            lastUpdated={appStore.lastUpdated}
+            currentlyUpdating={appStore.currentlyUpdating}
+            onUpdateClick={this.updateStories} />
           <div style={styles.listContainer}>
             {this.renderStories()}
           </div>
