@@ -8,34 +8,21 @@ import AppBar from "material-ui/AppBar";
 import Paper from "material-ui/Paper";
 import FlatButton from "material-ui/FlatButton";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import io from "socket.io-client";
 import _ from "lodash";
-import moment from "moment";
 
-import theme from "./utils/theme";
-import styles from "./utils/styles";
-import { extractDomain } from "./utils/string-utils";
+import theme from "../utils/theme";
+import styles from "../utils/styles";
+import { extractDomain } from "../utils/string-utils";
 
+import appStore from "../store/app-store";
+import socket from "../socket/socket-connection";
+import { Provider, observer } from "mobx-react";
+
+@observer
 class StoryApp extends Component {
 
   constructor(props, context) {
     super(props, context);
-
-    this.socket = io(window.location.href);
-    this.socket.on("stories", (data) => {
-      // eslint-disable-next-line no-console,prefer-template
-      //console.log(JSON.stringify(data));
-      this.setState({
-        stories: data,
-        lastUpdated: moment().format("h:mm a"),
-        currentlyUpdating: false
-      });
-    });
-
-    this.state = {
-      stories: [],
-      currentlyUpdating: false
-    };
   }
 
   openStoryLink(event, link) {
@@ -80,7 +67,7 @@ class StoryApp extends Component {
   }
 
   renderStories() {
-    const stories = this.state.stories;
+    const stories = appStore.stories;
     if (stories.length === 0) {
       return <div>Loading stories...</div>;
     } else {
@@ -91,24 +78,22 @@ class StoryApp extends Component {
   }
 
   lastUpdated() {
-    if (this.state.lastUpdated) {
-      const buttonLabel = this.state.currentlyUpdating ? "Updating..." : "Update Now";
+    if (appStore.lastUpdated) {
+      const buttonLabel = appStore.currentlyUpdating ? "Updating..." : "Update Now";
 
       return (
         <div style={{ marginTop: "5px" }}>
           <div style={{ color: "white", marginRight: "15px", display: "inline-block" }}>
             <span>
-              Last Updated: {this.state.lastUpdated}
+              Last Updated: {appStore.lastUpdated}
             </span>
           </div>
           <FlatButton
             style={{ color: "white", marginRight: "10px", width: "150px" }}
             label={buttonLabel}
             onClick={() => {
-              this.socket.emit("update-stories");
-              this.setState({
-                currentlyUpdating: true
-              });
+              socket.emit("update-stories");
+              appStore.currentlyUpdating = true;
             }}
           />
         </div>
@@ -136,4 +121,8 @@ class StoryApp extends Component {
   }
 }
 
-ReactDOM.render(<StoryApp />, document.getElementById("story-app"));
+ReactDOM.render(
+  <Provider appStore={appStore}>
+    <StoryApp />
+  </Provider>, 
+  document.getElementById("story-app"));

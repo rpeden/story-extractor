@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const path = require("path");
 
 module.exports = {
-  entry: "./frontend/App.jsx",
+  entry: "./frontend/components/App.jsx",
   output: {
     path: path.resolve(__dirname, "./public/js"),
     filename: "app.bundle.js"
@@ -16,7 +16,8 @@ module.exports = {
       query:
       {
         comments: false,
-        presets: [["es2015", { modules: false }], "stage-1", "react"]
+        presets: [["es2015", { modules: false }], "stage-1", "react"],
+        plugins: ["transform-decorators-legacy"]
       }
     }, { test: /\.json$/, loader: "json" } ]
   },
