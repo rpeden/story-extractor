@@ -9,7 +9,6 @@ import StoryGroup from "./StoryGroup/StoryGroup.jsx";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 import theme from "../utils/theme";
-import styles from "../utils/styles";
 
 import appStore from "../store/app-store";
 import socket from "../socket/socket-connection";
@@ -20,11 +19,6 @@ class StoryApp extends Component {
 
   constructor(props, context) {
     super(props, context);
-  }
-
-  openStoryLink(event, link) {
-    event.preventDefault();
-    window.open(link);
   }
 
   renderStories() {
@@ -46,12 +40,12 @@ class StoryApp extends Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={theme}>
-        <div style={styles.container}>
+        <div className="app-container">
           <TitleBar 
             lastUpdated={appStore.lastUpdated}
             currentlyUpdating={appStore.currentlyUpdating}
             onUpdateClick={this.updateStories} />
-          <div style={styles.listContainer}>
+          <div className="list-container">
             {this.renderStories()}
           </div>
         </div>
@@ -60,8 +54,4 @@ class StoryApp extends Component {
   }
 }
 
-ReactDOM.render(
-  <Provider appStore={appStore}>
-    <StoryApp />
-  </Provider>, 
-  document.getElementById("story-app"));
+ReactDOM.render(<StoryApp />, document.getElementById("story-app"));

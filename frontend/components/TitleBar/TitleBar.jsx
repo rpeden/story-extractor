@@ -17,7 +17,7 @@ export default class TitleBar extends React.Component {
                     </span>
                 </div>
                 <FlatButton
-                    style={{ color: "white", marginRight: "10px", width: "150px" }}
+                    className="title-bar-update-button"
                     label={buttonLabel}
                     onClick={this.props.onUpdateClick}
                 />
