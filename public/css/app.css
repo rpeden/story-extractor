@@ -55,3 +55,7 @@ a:focus {
 .story-group-site-name {
     font-size: 30px;
 }
+
+.story-group-stories-container {
+    margin-top: 10px;
+}

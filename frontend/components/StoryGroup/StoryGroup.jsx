@@ -15,7 +15,7 @@ const StoryGroup = ({storyGroup}) => {
             </div>
             <div className="story-group-points">Points</div>
             <div className="story-group-title">Title</div>
-            <div style={{ marginTop: "10px" }}>
+            <div className="story-group-stories-container">
               {sortedStories.map((story) => <Story story={story} /> )}
             </div>
           </div>
