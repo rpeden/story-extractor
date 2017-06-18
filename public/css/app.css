@@ -1,0 +1,57 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #eee;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #999;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #23527c;
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.story-group-logo {
+    height: 40px;
+    margin-right: 15px;
+}
+
+.story-group-container {
+    margin-bottom: 35px;
+    width: 90%;
+}
+
+.story-group-inner {
+    margin: 30px;
+}
+
+.story-group-points {
+    display: inline-block;
+    font-weight: 200;
+    color: #777;
+    width: 75px;
+}
+
+.story-group-title {
+    display: inline-block;
+    color: #777;
+    max-width: 800px;
+}
+
+.story-group-site-name {
+    font-size: 30px;
+}
