@@ -4,6 +4,7 @@ import FlatButton from "material-ui/FlatButton";
 import { observer } from "mobx-react";
 
 export default class TitleBar extends React.Component {
+    
     lastUpdated() {
         if (this.props.lastUpdated) {
         const buttonLabel = this.props.currentlyUpdating ? "Updating..." : "Update Now";
