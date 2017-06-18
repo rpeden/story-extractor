@@ -4,29 +4,29 @@ import FlatButton from "material-ui/FlatButton";
 import { observer } from "mobx-react";
 
 export default class TitleBar extends React.Component {
-    
+
     lastUpdated() {
         if (this.props.lastUpdated) {
         const buttonLabel = this.props.currentlyUpdating ? "Updating..." : "Update Now";
 
         return (
-            <div style={{ marginTop: "5px" }}>
-            <div style={{ color: "white", marginRight: "15px", display: "inline-block" }}>
-                <span>
-                Last Updated: {this.props.lastUpdated}
-                </span>
-            </div>
-            <FlatButton
-                style={{ color: "white", marginRight: "10px", width: "150px" }}
-                label={buttonLabel}
-                onClick={this.props.onUpdateClick}
-            />
+            <div className="title-bar-update-container">
+                <div className="title-bar-update-text">
+                    <span>
+                    Last Updated: {this.props.lastUpdated}
+                    </span>
+                </div>
+                <FlatButton
+                    style={{ color: "white", marginRight: "10px", width: "150px" }}
+                    label={buttonLabel}
+                    onClick={this.props.onUpdateClick}
+                />
             </div>
         );
         }
 
         return <span />;
-  }
+    }
 
     render() {
         return (
@@ -34,7 +34,7 @@ export default class TitleBar extends React.Component {
                 iconElementLeft={<span />}
                 iconElementRight={this.lastUpdated()}
                 title="Story Grabber 9000"
-                style={{ position: "fixed", top: "0px", left: "0px" }}
+                className="title-bar"
             />
         );
     }
