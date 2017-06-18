@@ -1,17 +1,18 @@
 const webpack = require("webpack");
 //const ClosureCompilerPlugin = require("webpack-closure-compiler");
+const path = require("path");
 
 module.exports = {
   entry: "./frontend/App.jsx",
   output: {
-    path: "./public/js",
+    path: path.resolve(__dirname, "./public/js"),
     filename: "app.bundle.js"
   },
   module: {
     loaders: [ {
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: "babel",
+      loader: "babel-loader",
       query:
       {
         comments: false,
