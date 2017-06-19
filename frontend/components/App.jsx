@@ -48,6 +48,7 @@ class StoryApp extends Component {
             lastUpdated={appStore.lastUpdated}
             currentlyUpdating={appStore.currentlyUpdating}
             onUpdateClick={this.updateStories} />
+          <div className="body-update-container">Last Updated: {appStore.lastUpdated}</div>
           <div className="list-container">
             {this.renderStories()}
           </div>
