@@ -78,9 +78,9 @@ a:focus {
 
 .story-group-container {
     /* override material-ui border radius */
-    border-radius: 10px !important;
+    border-radius: 0px !important;
     margin-bottom: 35px;
-    width: 90%;
+    width: 100%;
 }
 
 .story-group-inner {
