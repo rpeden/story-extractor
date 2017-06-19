@@ -52,6 +52,11 @@ a:focus {
     margin-top: 5px;
 }
 
+@media only screen and (max-width : 420px) {
+    .title-bar-update-container {
+        display: none;
+    }
+}
 .title-bar-update-text {
     color: white;
     margin-right: 15px;
