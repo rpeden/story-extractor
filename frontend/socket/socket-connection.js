@@ -2,7 +2,7 @@ import appStore from "../store/app-store";
 import moment from "moment";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:4000");
+const socket = io.connect(window.location.href);
 
 socket.on("stories", (data) => {
   appStore.stories = data;
