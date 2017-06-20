@@ -12,10 +12,10 @@ import theme from "../utils/theme";
 
 import appStore from "../store/app-store";
 import socket from "../socket/socket-connection";
-import { Provider, observer } from "mobx-react";
+import { observer } from "mobx-react";
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import Reload from 'material-ui/svg-icons/action/cached';
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import Reload from "material-ui/svg-icons/action/cached";
 
 @observer
 class StoryApp extends Component {
@@ -30,12 +30,12 @@ class StoryApp extends Component {
       return <div>Loading stories...</div>;
     } else {
       return stories.map((storyGroup) => {
-        return <StoryGroup storyGroup={storyGroup} />;
+        return <StoryGroup key={storyGroup.site} storyGroup={storyGroup} />;
       });
     }
   }
 
-  updateStories() {
+  handleStoryUpdate() {
     socket.emit("update-stories");
     appStore.currentlyUpdating = true;
   }
@@ -44,15 +44,19 @@ class StoryApp extends Component {
     return (
       <MuiThemeProvider muiTheme={theme}>
         <div className="app-container">
-          <TitleBar 
+          <TitleBar
             lastUpdated={appStore.lastUpdated}
             currentlyUpdating={appStore.currentlyUpdating}
-            onUpdateClick={this.updateStories} />
+            onUpdateClick={this.handleStoryUpdate}
+          />
           <div className="body-update-container">Last Updated: {appStore.lastUpdated}</div>
           <div className="list-container">
             {this.renderStories()}
           </div>
-          <FloatingActionButton onClick={this.updateStories} style={{ position: "fixed", bottom: 15, right: 15 }}>
+          <FloatingActionButton
+            onClick={this.handleStoryUpdate}
+            style={{ position: "fixed", bottom: 15, right: 15 }}
+          >
             <Reload />
           </FloatingActionButton>
         </div>
