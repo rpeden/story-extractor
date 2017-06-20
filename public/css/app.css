@@ -79,7 +79,7 @@ a:focus {
 }
 
 .title-bar-update-button {
-    color: white !important; 
+    color: white !important;
     margin-right: 10px;
     width: 150px;
 }
@@ -128,6 +128,7 @@ a:focus {
 .story-group-site-name {
     font-family: "Montserrat";
     font-size: 30px;
+    text-align: center;
 }
 
 .story-group-stories-container {
