@@ -26,22 +26,23 @@ const styles = {
         width: "75px"
       },
       title: {
-        display: "inline-block",
-        color: "#777",
-        maxWidth: "800px"
+        display: "block",
+        color: "#777"
       }
     },
     points: {
       display: "inline-block",
-      width: "75px"
+      width: "150px",
+      fontSize: "13px",
+      color: "#888"
     },
     title: {
-      display: "inline-block",
-      maxWidth: "800px"
+      display: "block"
     },
     domain: {
       fontSize: "13px",
-      color: "#888"
+      color: "#888",
+      display: "inline-block"
     }
   }
 };

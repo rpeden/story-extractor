@@ -10,18 +10,22 @@ const openStoryLink = (event, link) => {
 
 const Story = ({story}) => {
   return (
-      <div key={story.address} style={{ marginBottom: "10px" }}>
-        <div style={styles.story.points}>
-          {story.points}
-        </div>
+      <div key={story.address}
+        style={{
+          marginBottom: "10px", paddingTop: "10px",
+          borderTop: "1px solid #ccc" }}
+      >
         <div style={styles.story.title}>
           <a href={story.address}
             onClick={(event) => openStoryLink(event, story.address)}
           >
             {story.title}
           </a>
-          <span style={styles.story.domain}> ({extractDomain(story.address)})</span>
         </div>
+        <div style={styles.story.points}>
+          {story.points} points
+        </div>
+        <span style={styles.story.domain}> ({extractDomain(story.address)})</span>
       </div>
   );
 };

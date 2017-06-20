@@ -37,14 +37,14 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
-    }),
-    new webpack.optimize.UglifyJsPlugin({
+    })
+    /*new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       output: {
         comments: false
       }
-    })
+    })*/
   ]
 };

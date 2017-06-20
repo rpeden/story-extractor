@@ -16,8 +16,6 @@ const StoryGroup = ({storyGroup}) => {
               <img className="story-group-logo" src={`/logos/${storyGroup.logo}`} />
               <span className="story-group-site-name">{storyGroup.site}</span>
             </div>
-            <div className="story-group-points">Points</div>
-            <div className="story-group-title">Title</div>
             <div className="story-group-stories-container">
               {topStories.map((story) => <Story key={story.title} story={story} />)}
             </div>
