@@ -1,7 +1,7 @@
 html, body {
     font-family: "Open Sans";
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background-color: #555;
 }
 
@@ -45,8 +45,8 @@ a:focus {
 .title-bar {
     /* have to override material-ui AppBar position */
     position: fixed !important;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
 }
 
 .title-bar-update-container {
