@@ -28,10 +28,5 @@ module.exports = [
     title: "Reddit /r/web_design",
     subReddit: "web_design",
     minimumScore: 0,
-    logo: "reddit.png" },
-  { type: "Reddit",
-    title: "Reddit /r/technology",
-    subReddit: "technology",
-    minimumScore: 0,
     logo: "reddit.png" }
 ];
