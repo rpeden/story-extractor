@@ -2,6 +2,8 @@ const webpack = require("webpack");
 //const ClosureCompilerPlugin = require("webpack-closure-compiler");
 const path = require("path");
 
+const { NODE_ENV } = process.env;
+
 module.exports = {
   entry: "./frontend/components/App.jsx",
   output: {
@@ -16,7 +18,9 @@ module.exports = {
       query:
       {
         comments: false,
-        presets: [["es2015", { modules: false }], "stage-1", "react"],
+        presets: [["es2015", { modules:
+          NODE_ENV === "test" ? "commonjs" : false }],
+          "stage-1", "react"],
         plugins: ["transform-decorators-legacy"]
       }
     }, { test: /\.json$/, loader: "json" } ]
