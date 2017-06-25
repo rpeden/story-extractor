@@ -2,18 +2,23 @@
     "extends": "walmart/configurations/es6-react",
     "env": {
         "node": true,
-        "browser": true
+        "browser": true,
+        "jest/globals": true
     },
     "rules": {
       "filenames/match-regex": 0,
       "filenames/match-exported": 0,
       "filenames/no-index": 0,
       "no-magic-numbers": 0,
-      // max 5 function parameters 
+      // max 5 function parameters
       "max-params": ["error", 5],
-      "new-cap": 0
+      "new-cap": 0,
+      "jest/no-disabled-tests": "warn",
+      "jest/no-focused-tests": "error",
+      "jest/no-identical-title": "error",
+      "jest/valid-expect": "error"
     },
-    "plugins": ["react"],
+    "plugins": ["react", "jest"],
     "parserOptions": {
         "ecmaFeatures": {
           "jsx": true
