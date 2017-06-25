@@ -40,7 +40,7 @@ test("Story group snapshot", () => {
   expect(storyGroup).toMatchSnapshot();
 });
 
-test("Title displays correctly", () => {
+test("Site name displays correctly", () => {
   const component = shallow(
       <StoryGroup storyGroup={storyGroupData} />
   );
