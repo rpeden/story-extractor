@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Story displays as expected 1`] = `
+exports[`Story snapshot works 1`] = `
 <div
   style={
     Object {
