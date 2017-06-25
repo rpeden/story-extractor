@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Story displays as expected 1`] = `
+<div
+  style={
+    Object {
+      "borderTop": "1px solid #ccc",
+      "marginBottom": "10px",
+      "paddingTop": "10px",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "display": "block",
+      }
+    }
+  >
+    <a
+      href="http://nowhere.com"
+      onClick={[Function]}
+    >
+      Test Title
+    </a>
+  </div>
+  <div
+    style={
+      Object {
+        "color": "#888",
+        "display": "inline-block",
+        "fontSize": "13px",
+        "width": "150px",
+      }
+    }
+  >
+    50
+     points
+  </div>
+  <span
+    style={
+      Object {
+        "color": "#888",
+        "display": "inline-block",
+        "fontSize": "13px",
+      }
+    }
+  >
+     (
+    nowhere.com
+    )
+  </span>
+</div>
+`;

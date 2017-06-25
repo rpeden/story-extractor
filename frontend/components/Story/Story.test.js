@@ -1,12 +1,13 @@
 import React from "react";
-import Story from ".Story.jsx";
+import Story from "./Story.jsx";
 import renderer from "react-test-renderer";
+import {shallow} from "enzyme";
 
-test("Story displays as expected", () => {
+test("Story snapshot works", () => {
   const testStory = {
     title: "Test Title",
     points: 50,
-    domain: "http://nowhere.com"
+    address: "http://nowhere.com"
   };
 
   const component = renderer.create(
@@ -14,4 +15,8 @@ test("Story displays as expected", () => {
   );
   const story = component.toJSON();
   expect(story).toMatchSnapshot();
+});
+
+test("Story renders as expected", () => {
+
 });
