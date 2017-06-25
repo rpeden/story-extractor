@@ -1,7 +1,8 @@
 import { observable } from "mobx";
+import { List } from "immutable";
 
 class AppStore {
-    @observable stories = [];
+    @observable stories = List();
     @observable lastUpdated = "";
     @observable currentlyUpdating = false;
 }
