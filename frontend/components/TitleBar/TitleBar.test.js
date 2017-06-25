@@ -26,3 +26,14 @@ test("Last updated time displays correctly", () => {
   const updatedText = component.find(".title-bar-update-text").text();
   expect(updatedText).toBe("Last Updated: now");
 });
+
+test("Last updated time doesn't render too soon", () => {
+  const component = mount(
+    <MuiThemeProvider theme={theme}>
+      <TitleBar lastUpdated={""} />
+    </MuiThemeProvider>
+  );
+
+  const updatedText = component.find(".title-bar-update-text");
+  expect(updatedText.length).toBe(0);
+});
