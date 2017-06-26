@@ -8,6 +8,7 @@ const hackerNewsParser = (dom, promise, minPoints, logo) => {
   const $ = dom.document;//jQuery(dom.window);
     // get the list of stories
   const stories = $(".athing");
+  const hnBaseUrl = "https://news.ycombinator.com";
   const parsedStories = [];
     // extract what we need from each story
   _.forEach(stories, (story) => {
@@ -16,18 +17,26 @@ const hackerNewsParser = (dom, promise, minPoints, logo) => {
     // extract url
     let address = storyAnchor.attr("href");
     if (!address.startsWith("http")) {
-      address = `https://news.ycombinator.com/${address}`;
+      address = `${hnBaseUrl}/${address}`;
     }
     // extract story title
     const title = storyAnchor.text();
+    //get element with story metadata
+    const metaData = $(story).next();
     // extract score/points
-    const points = parseInt($(story).next().find(".score").text()) || 0;
+    const points = parseInt(metaData.find(".score").text()) || 0;
+    //get comments link and count
+    const commentsAnchor = $(_.last(metaData.find("a")));
+    const commentsAddress = `${hnBaseUrl}/${commentsAnchor.attr("href")}`;
+    const commentsCount = parseInt(commentsAnchor.text()) || 0;
 
     if (points >= minPoints) {
       parsedStories.push({
         title,
         address,
-        points
+        points,
+        commentsCount,
+        commentsAddress
       });
     }
   });
@@ -67,11 +76,21 @@ const redditParser = (dom, promise, title, minPoints, logo) => {
     }
     // extract score/points
     const points = parseInt($(story).find(".likes").text()) || 0;
+    // extract comments count and link
+    const commentsAnchor = $(story).find("a[data-event-action=comments]");
+    const commentsCount = parseInt(commentsAnchor.text());
+    let commentsAddress = commentsAnchor.attr("href");
+    if (!commentsAddress.startsWith("http")) {
+      commentsAddress = `https://www.reddit.com${address}`;
+    }
+
     if (points >= minPoints) {
       parsedStories.push({
         title: titleText,
         address,
-        points
+        points,
+        commentsAddress,
+        commentsCount
       });
     }
   });
